@@ -109,7 +109,7 @@ var checkAnswer = function(str, x){
             }
         }
         else{
-            if(!checkTiemr()){
+            if(!checkTimer()){
                 timer-=10;
         }
         showAnswer = "Uh-oh, that's incorrect";
@@ -131,5 +131,41 @@ else{
 }
 
 };
+
+var showQuestion = function(x) {
+    if(x < questions.length)
+    {
+        textQuestion.textContent = questions[x].q;
+
+        var listUnOrdered = document.createElement("ul");
+        listUnOrdered.setAttribute("id", "question-id");
+        var op1 = document.createElement("li");
+        var op2 = document.createElement("li");
+        var op3 = document.createElement("li");
+        var op4 = document.createElement("li");
+
+        listUnOrdered.style.color = secondColor;
+        listUnOrdered.style.justifycontent = "space-between";
+        listUnOrdered.style.listStyle = "none";
+        
+        op1.style.background = firstColor;
+        op1.style.justifyContent = textCnt;
+        op1.style.borderRadius = "10px";
+
+        op2.style.background = firstColor;
+        op2.style.justifyContent = textCnt;
+        op2.style.borderRadius = "10px";
+
+        op3.style.background = firstColor;
+        op3.style.justifyContent = textCnt;
+        op3.style.borderRadius = "10px";
+        
+        op4.style.background = firstColor;
+        op4.style.justifyContent = textCnt;
+        op4.style.borderRadius = "10px";
+    }
+}
+
+
 
 
