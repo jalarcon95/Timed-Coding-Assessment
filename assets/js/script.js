@@ -147,7 +147,7 @@ var showQuestion = function(x) {
         listUnOrdered.style.color = secondColor;
         listUnOrdered.style.justifycontent = "space-between";
         listUnOrdered.style.listStyle = "none";
-        
+
         op1.style.background = firstColor;
         op1.style.justifyContent = textCnt;
         op1.style.borderRadius = "10px";
@@ -163,8 +163,41 @@ var showQuestion = function(x) {
         op4.style.background = firstColor;
         op4.style.justifyContent = textCnt;
         op4.style.borderRadius = "10px";
+
+        op1.innerHTML = "<a href= '#' onclick=checkAnswer('A'," + x + 
+        ") style = 'text-decoration: none; color: #5fc6fe; '><div style = 'text-align: left;'>1. "
+        + questions[x].a + "</div></a>";
+
+        op2.innerHTML = "<a href= '#' onclick=checkAnswer('B'," + x + 
+        ") style = 'text-decoration: none; color: #5fc6fe; '><div style = 'text-align: left;'>2. "
+        + questions[x].b + "</div></a>";
+
+        op3.innerHTML = "<a href= '#' onclick=checkAnswer('C'," + x + 
+        ") style = 'text-decoration: none; color: #5fc6fe; '><div style = 'text-align: left;'>3. "
+        + questions[x].c + "</div></a>";
+
+        op4.innerHTML = "<a href= '#' onclick=checkAnswer('D'," + x + 
+        ") style = 'text-decoration: none; color: #5fc6fe; '><div style = 'text-align: left;'>4. "
+        + questions[x].d + "</div></a>";
+
+        listUnOrdered.appendChild(op1);
+        listUnOrdered.appendChild(op2);
+        listUnOrdered.appendChild(op3);
+        listUnOrdered.appendChild(op4);
+        container.appendChild(listUnOrdered);
+        
+        var button = document.querySelector("#start");
+        deleteChildNode(button);
+        deleteChildNode(document.querySelector("#go-back"));
+        deleteChildNode(document.querySelector("#clear"));
+
+        x++;
     }
-}
+    else{
+        showInitialScore();    
+    }
+    return x;  
+};
 
 
 
