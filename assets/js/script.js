@@ -96,3 +96,40 @@ var checkTimer = function(){
     return eval;
 };
 
+var checkAnswer = function(str, x){
+    if(x < questions.length){
+        var showAnswer = "";
+        
+        if (str === questions[x].answer){
+            if(!checkTimer()){
+                showAnswer = "That's Correct!";
+                score+=10;
+
+
+            }
+        }
+        else{
+            if(!checkTiemr()){
+                timer-=10;
+        }
+        showAnswer = "Uh-oh, that's incorrect";
+    }
+
+    var elementNode = document.querySelector("#question-id");
+    deleteChilNode(elementNode);
+
+    index = showQuestion(index);
+    answer.textContent = showAnswer;
+
+}
+else{
+    var elementNode = document.querySelector("#question-id");
+    deleteChildNode(elementNode);
+    answer.textContent ="";
+
+    showInitialScore();
+}
+
+};
+
+
