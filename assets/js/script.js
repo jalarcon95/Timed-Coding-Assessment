@@ -12,3 +12,64 @@ var firstColor = "#4112cf";
 var secondColor = "#1778ad";
 var textCnt = "left";
 
+var questions = {
+
+    {
+        q : "Commonly used data types do NOT include: ",
+        a : "Strings",
+        b : "Alerts",
+        c : "Booleans",
+        d : "Numbers",
+        
+        answer : "c"
+    },
+
+    {
+        q : "Arrays in Javascript can be used to store: ",
+        a : "Numbers and Strings",
+        b : "Booleans",
+        c : "Other Arrays",
+        d : "All of the above",
+        
+        answer : "b"
+    },
+
+    {
+        q : "The condition for the if/else statement is enclosed within: ",
+        a : "Curly Brackets",
+        b : "Quotes",
+        c : "Square Brackets",
+        d : "Parantheses",
+        
+        answer : "d"
+
+    },
+
+    {
+        q : "True or False: DOM is built into a Javascript language ",
+        a : "True",
+        b : "False",
+
+        answer : "a"
+
+    },
+
+    {
+        q : "A very useful tool used during development and debuggng for printing content to the debugger is: ",
+        a : "Terminal/Bash",
+        b : "For loops",
+        c : "Javascript",
+        d : "Console.log",
+        
+        answer : "c"
+
+    },
+
+
+
+
+
+
+
+
+}
