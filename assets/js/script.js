@@ -12,7 +12,7 @@ var firstColor = "#4112cf";
 var secondColor = "#1778ad";
 var textCnt = "left";
 
-var questions = {
+var questions = [
 
     {
         q : "Commonly used data types do NOT include: ",
@@ -65,11 +65,4 @@ var questions = {
 
     },
 
-
-
-
-
-
-
-
-}
+]
