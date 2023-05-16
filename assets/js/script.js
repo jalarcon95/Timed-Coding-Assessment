@@ -1,4 +1,4 @@
-var score = 0;
+var scores = 0;
 var timer = 60;
 var interval;
 var index = 0;
@@ -22,11 +22,11 @@ var questions = [
     {
         q : "Commonly used data types do NOT include: ",
         a : "Strings",
-        b : "Alerts",
-        c : "Booleans",
+        b : "Booleans",
+        c : "Alerts",
         d : "Numbers",
         
-        answer : "c"
+        answer : "B"
     },
 
     {
@@ -36,7 +36,7 @@ var questions = [
         c : "Other Arrays",
         d : "All of the above",
         
-        answer : "b"
+        answer : "A"
     },
 
     {
@@ -46,7 +46,7 @@ var questions = [
         c : "Square Brackets",
         d : "Parantheses",
         
-        answer : "d"
+        answer : "D"
 
     },
 
@@ -57,7 +57,7 @@ var questions = [
         c : "Submit a form usng the Enter key",
         d : "None of the aboe",
 
-        answer : "a"
+        answer : "A"
 
     },
 
@@ -68,7 +68,7 @@ var questions = [
         c : "Javascript",
         d : "Console.log",
         
-        answer : "c"
+        answer : "C"
 
     },
 
@@ -109,7 +109,7 @@ var checkAnswer = function(str, x){
         if (str === questions[x].answer){
             if(!checkTimer()){
                 showAnswer = "That's Correct!";
-                score+=10;
+                scores+=10;
             }
         }
         else{
@@ -215,9 +215,9 @@ var displayErrorMessage = function(msg){
     alert(msg);
 };
 
-var gettingArrayLocalStore = function(){
+var getArrayLocalStore = function(){
     var user = [];
-    user = JSON.parse(localStore.getItem("userScore"));
+    user = JSON.parse(localStorage.getItem("userScore"));
     return user;
 };
 
@@ -227,7 +227,7 @@ var clearLocalStore = function(){
 
 var retrieveHighScore = function(){
 
-    saveHighScore = gettingArrayLocalStore();
+    saveHighScore = getArrayLocalStore();
     timer = 0;
 
     textQuestion.textContent = "High Scores";
@@ -237,7 +237,7 @@ var retrieveHighScore = function(){
 
     if(!highOption){
         container.textContent = "";
-        deleteChildNode(dcoument.querySelector("#start"));
+        deleteChildNode(document.querySelector("#start"));
     }
     else{
         deleteChildNode(document.querySelector(".p-store"));
@@ -268,7 +268,7 @@ var retrieveHighScore = function(){
     }
 
     createButton("go-back", "Go Back");
-    createButton("clear", "Clear High Scoress");
+    createButton("clear", "Clear High Scores");
     
     var btn1 = document.querySelector("#go-back");
     var btn2 = document.querySelector("#clear");
@@ -294,7 +294,7 @@ var saveScore = function(){
     } else {
         displayErrorMessage("Registered your score successfully!");
 
-        saveHighScore = getingArrayLocalStore();
+        saveHighScore = getArrayLocalStore();
 
         if(saveHighScore == null)
         {
@@ -303,7 +303,7 @@ var saveScore = function(){
 
         saveHighScoreObj ={
             user: input,
-            score: score
+            score: scores
         };
 
         saveHighScore.push(saveHighScoreObj);
@@ -322,7 +322,7 @@ var showInitialScore = function() {
     var msg = document.createElement("p");
     msg.setAttribute("id", "score-id");
 
-    msg.textContent = "Your final score is: " + score + "out of "+ (questions.length * 10);
+    msg.textContent = "Your final score is: " + scores + " out of "+ (questions.length * 10);
 
     var span = document.createElement("span");
     span.setAttribute("id", "form-id");
@@ -331,8 +331,8 @@ var showInitialScore = function() {
     span.style.justifyContent = "center";
     span.style.flex = "flex-wrap";
     span.innerHTML = "<p class='p-store' style ='text-align:left'> Enter Initials: </p>" +
-                        "<form class='form-store' style='padding:12px'><input type='text' name='initials placeholder='Enter initials' id='initials'/>"+
-                        "<button id='save' tyoe='submit' onclick='saveScore()' style= 'background:" + firstColor +
+                        "<form class='form-store' style='padding:10px'><input type='text' name='initials placeholder='Enter initials' id='initials'/>"+
+                        "<button id='save' type='submit' onclick='saveScore()' style= 'background:" + firstColor +
                         "; color:" + secondColor +"; border-radius:10px'>Submit</button></form>";
 
     
@@ -365,7 +365,7 @@ var clockTime = function () {
 
 var startHandler = function() {
 
-    container,textContent = "";
+    container.textContent = "";
     highOption = 1;
 
     interval = setInterval(clockTime, 1000);
