@@ -1,10 +1,12 @@
 var score = 0;
 var timer = 60;
+var interval;
 var index = 0;
+var highOption;
 var saveHighScore = [];
 var saveHighScoreObj;
 var containerBtn = document.querySelector(".textAction");
-var container = document.querySelector(".textBox");
+var container = document.querySelector(".container");
 var textQuestion = document.querySelector(".textCenter");
 var answer = document.querySelector(".answer");
 var linkScore = document.querySelector(".a-score");
@@ -49,9 +51,11 @@ var questions = [
     },
 
     {
-        q : "True or False: DOM is built into a Javascript language ",
-        a : "True",
-        b : "False",
+        q : "The Browser event submit allows u to do the following ",
+        a : "Submit a form usng a button and the Enter key",
+        b : "Submit a form usng a button",
+        c : "Submit a form usng the Enter key",
+        d : "None of the aboe",
 
         answer : "a"
 
@@ -99,14 +103,13 @@ var checkTimer = function(){
 
 var checkAnswer = function(str, x){
     if(x < questions.length){
+
         var showAnswer = "";
         
         if (str === questions[x].answer){
             if(!checkTimer()){
                 showAnswer = "That's Correct!";
                 score+=10;
-
-
             }
         }
         else{
@@ -117,7 +120,7 @@ var checkAnswer = function(str, x){
     }
 
     var elementNode = document.querySelector("#question-id");
-    deleteChilNode(elementNode);
+    deleteChildNode(elementNode);
 
     index = showQuestion(index);
     answer.textContent = showAnswer;
@@ -126,7 +129,7 @@ var checkAnswer = function(str, x){
 else{
     var elementNode = document.querySelector("#question-id");
     deleteChildNode(elementNode);
-    answer.textContent ="";
+    answer.textContent = "";
 
     showInitialScore();
 }
@@ -214,7 +217,7 @@ var displayErrorMessage = function(msg){
 
 var gettingArrayLocalStore = function(){
     var user = [];
-    user = JOSN.parse(localStore.getItem("userScore"));
+    user = JSON.parse(localStore.getItem("userScore"));
     return user;
 };
 
@@ -310,9 +313,9 @@ var saveScore = function(){
     }
 };
 
-var aftergame = function() {
+var showInitialScore = function() {
 
-    textQuestion.tesxtContent = "All Done!";
+    textQuestion.textContent = "All Done!";
     remainTime.textContent = "Time left :" + timer;
     answer.textContent = "";
 
@@ -335,14 +338,44 @@ var aftergame = function() {
     
     container.appendChild(msg);
     container.appendChild(span);
-
 };
 
+var clockTime = function () {
 
+    if(checkTimer()){
+        clearInterval(interval);
 
-  
+        var elementNode = document.querySelector("#question-id");
+        if(elementNode != null && answer != null){
+            deleteChildNode(elementNode);
 
+            answer.textContent ="";
 
+            showInitialScore();
+        }   
+    }else{
+
+        if(index < questions.length){
+
+            timer--;
+            remainTime.textContent = "Time left :"+ timer;
+        }
+    }
+}; 
+
+var startHandler = function() {
+
+    container,textContent = "";
+    highOption = 1;
+
+    interval = setInterval(clockTime, 1000);
+
+    index = showQuestion(index);
+};
+
+var button = document.querySelector("#start");
+button.addEventListener("click", startHandler);
+linkScore.addEventListener("click", retrieveHighScore);
 
 
 
