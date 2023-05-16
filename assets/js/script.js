@@ -199,6 +199,90 @@ var showQuestion = function(x) {
     return x;  
 };
 
+var deleteChildNode = function(elementNode){
+
+    if(elementNode){
+        elementNode.parentNode.removeChild(elementNode);
+    }
+
+};
+
+var displayErrorMessage = function(msg){
+    alert(msg);
+};
+
+var gettingArrayLocalStore = function(){
+    var user = [];
+    user = JOSN.parse(localStore.getItem("userScore"));
+    return user;
+};
+
+var clearLocalStore = function(){
+    localStorage.clear();
+};
+
+var retrieveHighScore = function(){
+
+    saveHighScore = gettingArrayLocalStore();
+    timer = 0;
+
+    textQuestion.textContent = "High Scores";
+    remainTime.textContent = "";
+    linkScore.textContent = "";
+    answer.textContent = "";
+
+    if(!highOption){
+        container.textContent = "";
+        deleteChildNode(dcoument.querySelector("#start"));
+    }
+    else{
+        deleteChildNode(document.querySelector(".p-store"));
+        deleteChildNode(document.querySelector(".form-store"));
+        deleteChildNode(document.querySelector("#score-id"));
+    }
+
+    if(saveHighScore != null)
+    {
+        console.log(saveHighScore.length);
+        var listUnOrdered = document.createElement("ul");
+
+        listUnOrdered.style.background = secondColor;
+        listUnOrdered.style.justifyContent = "space-between";
+        listUnOrdered.style.listStyle = "none";
+        
+        for(var i=0; i< saveHighScore.length; i++){
+            var li = document.createElement("li");
+            li.innerHTML = "<div style = 'text-align: left;'>" + (i+1) + ". " +
+                            JSON.stringify(saveHighScore[i].user) + " - " + JSON.stringify(saveHighScore[i].score) + "</div>";
+            li.style.textAlign = textCnt;
+            li.style.background - firstColor;
+            li.style.borderBottom = "10px";
+            listUnOrdered.appendChild(li);''
+        }
+
+        container.appendChild(listUnOrdered);
+    }
+
+    createButton("go-back", "Go Back");
+    createButton("clear", "Clear High Scoress");
+    
+    var btn1 = document.querySelector("#go-back");
+    var btn2 = document.querySelector("#clear");
+    btn1.addEventListener("click", function() {
+        location.reload();
+    });
+    btn2.addEventListener("click", function() {
+        clearLocalStore();
+    });
+
+    deleteChildNode(document.querySelector("#question-id"));
+
+};
+
+
+
+
+
 
 
 
