@@ -310,6 +310,37 @@ var saveScore = function(){
     }
 };
 
+var aftergame = function() {
+
+    textQuestion.tesxtContent = "All Done!";
+    remainTime.textContent = "Time left :" + timer;
+    answer.textContent = "";
+
+    var msg = document.createElement("p");
+    msg.setAttribute("id", "score-id");
+
+    msg.textContent = "Your final score is: " + score + "out of "+ (questions.length * 10);
+
+    var span = document.createElement("span");
+    span.setAttribute("id", "form-id");
+    span.style.dsiplay = "flex";
+    span.style.flexWrap = "wrap";
+    span.style.justifyContent = "center";
+    span.style.flex = "flex-wrap";
+    span.innerHTML = "<p class='p-store' style ='text-align:left'> Enter Initials: </p>" +
+                        "<form class='form-store' style='padding:12px'><input type='text' name='initials placeholder='Enter initials' id='initials'/>"+
+                        "<button id='save' tyoe='submit' onclick='saveScore()' style= 'background:" + firstColor +
+                        "; color:" + secondColor +"; border-radius:10px'>Submit</button></form>";
+
+    
+    container.appendChild(msg);
+    container.appendChild(span);
+
+};
+
+
+
+  
 
 
 
