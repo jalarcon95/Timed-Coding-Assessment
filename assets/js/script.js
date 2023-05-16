@@ -2,6 +2,7 @@ var score = 0;
 var timer = 60;
 var index = 0;
 var saveHighScore = [];
+var saveHighScoreObj;
 var containerBtn = document.querySelector(".textAction");
 var container = document.querySelector(".textBox");
 var textQuestion = document.querySelector(".textCenter");
@@ -277,6 +278,36 @@ var retrieveHighScore = function(){
 
     deleteChildNode(document.querySelector("#question-id"));
 
+};
+
+var saveScore = function(){
+
+    event.preventDefault();
+
+    var input = document.querySelector("#initials").value;
+
+    if (input === "") {
+        displayErrorMessage("You must type in your initials to log your Score");
+    } else {
+        displayErrorMessage("Registered your score successfully!");
+
+        saveHighScore = getingArrayLocalStore();
+
+        if(saveHighScore == null)
+        {
+            saveHighScore = [];
+        }
+
+        saveHighScoreObj ={
+            user: input,
+            score: score
+        };
+
+        saveHighScore.push(saveHighScoreObj);
+
+        localStorage.setItem("userScore",JSON.stringify(saveHighScore));
+        retrieveHighScore();
+    }
 };
 
 
