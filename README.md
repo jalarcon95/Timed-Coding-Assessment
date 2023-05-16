@@ -32,4 +32,15 @@ In this application, I am building a timed coding quiz from scratch. The coding 
 
 ## Website Link
 
+https://jalarcon95.github.io/Timed-Coding-Assessment/
+
 ## Screenshot
+
+Start Page
+![screenshot](/assets/images/coding-quiz-start-page.png)
+
+Type-in Initials to register score
+![screenshot](/assets/images/coding-quiz-type-initials.png)
+
+User High Scores
+![screeshot](/assets/images/coding-quiz-highscores.png)
